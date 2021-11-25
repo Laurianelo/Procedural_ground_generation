@@ -342,15 +342,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f141ebc0e429a454c903d4122e4ce610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawMode: 1
+  autoUpdate: 1
   mapWidth: 100
   mapHeight: 100
-  noiseScale: 29.6
-  autoUpdate: 1
+  noiseScale: 25
   octave: 4
   persistance: 0.48
-  lacunarity: 1.87
-  seed: 29
-  offset: {x: 23.49, y: 1}
+  lacunarity: 2
+  seed: 0
+  offset: {x: 0, y: 0}
+  regions:
+  - name: WaterDeep
+    height: 0.3
+    colorTerrain: {r: 0.1147739, g: 0.5017076, b: 0.9811321, a: 0}
+  - name: WaterShallow
+    height: 0.4
+    colorTerrain: {r: 0.36819148, g: 0.7792426, b: 0.990566, a: 0}
+  - name: Sand
+    height: 0.45
+    colorTerrain: {r: 0.8455249, g: 0.8679245, b: 0, a: 0}
+  - name: GrassDeep
+    height: 0.55
+    colorTerrain: {r: 0.0064791483, g: 0.49056602, b: 0.1363561, a: 0}
+  - name: GrassShallow
+    height: 0.6
+    colorTerrain: {r: 0.14556289, g: 0.7830189, b: 0.054663554, a: 0}
+  - name: RockDeep
+    height: 0.7
+    colorTerrain: {r: 0.5188679, g: 0.22702181, b: 0.05090778, a: 0}
+  - name: RockShallow
+    height: 0.9
+    colorTerrain: {r: 0.5943396, g: 0.3052014, b: 0.23773582, a: 0}
+  - name: Snow
+    height: 1
+    colorTerrain: {r: 0.855251, g: 0.9811321, b: 0.88902396, a: 0}
 --- !u!4 &1752178950
 Transform:
   m_ObjectHideFlags: 0
