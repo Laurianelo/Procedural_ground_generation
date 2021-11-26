@@ -6,35 +6,34 @@ public static class MeshGenerator
 {
 
     //generate mesh of map
-    public static MeshData GenerateTerrainMesh(float[,] heightMap)
+    public static MeshData GenerateTerrainMesh(float[,] heightMap, float heightMultiplier, AnimationCurve heightCruve, int LOD)
     {
         int width = heightMap.GetLength(0);
         int height = heightMap.GetLength(1);
         float topLeftX = (width - 1) / -2f;
         float topLeftZ = (height - 1) / 2f;
+        int meshSimplificationIncrement = (LOD== 0)?1:LOD *2 ;
+        int verticesPerLine = (width - 1) / meshSimplificationIncrement + 1;// nb de vertices for each line
 
-        MeshData mshData = new MeshData(width, height);
+
+        MeshData mshData = new MeshData(verticesPerLine, verticesPerLine);
         int vertexIndex = 0;
-        for (int y = 0; y < height; y++)
+        for (int y = 0; y < height; y+= meshSimplificationIncrement)
         {
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x < width; x+= meshSimplificationIncrement)
             {
-                mshData.vertices[vertexIndex] = new Vector3(topLeftX + x, heightMap[x, y], topLeftZ - y);
+                mshData.vertices[vertexIndex] = new Vector3(topLeftX + x, heightCruve.Evaluate(heightMap[x, y]) *  heightMultiplier, topLeftZ - y);
                 mshData.uvsMap[vertexIndex] = new Vector2(x / (float)width, y / (float)height); // send % for uv knows in which vertex are we
                 //create triangles
                 if (x < width - 1 && y < height - 1)
                 {
-                    mshData.AddTriangle(vertexIndex, vertexIndex + width + 1, vertexIndex + width);
-                    mshData.AddTriangle(vertexIndex + width + 1, vertexIndex, vertexIndex + 1);
+                    mshData.AddTriangle(vertexIndex, vertexIndex + verticesPerLine + 1, vertexIndex + verticesPerLine);
+                    mshData.AddTriangle(vertexIndex + verticesPerLine + 1, vertexIndex, vertexIndex + 1);
                 }
                 vertexIndex++;
             }
-
-
         }
-
         return mshData;
-
     }
 }
 
