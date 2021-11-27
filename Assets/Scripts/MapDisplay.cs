@@ -21,6 +21,7 @@ public class MapDisplay : MonoBehaviour
         textureRenderer.transform.localScale = new Vector3(texture.width, 1, texture.height);
     }
 
+
     public void DrawMesh(MeshData mshData, Texture2D texture)
     {
         mshFilter.sharedMesh = mshData.CreateMesh();

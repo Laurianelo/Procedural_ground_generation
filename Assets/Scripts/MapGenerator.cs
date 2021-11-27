@@ -10,7 +10,7 @@ public class MapGenerator : MonoBehaviour
     public DrawMode drawMode;
     public bool autoUpdate;
 
-    const int mapChunkSize = 241; //255 is limited by unity 
+    public const int mapChunkSize = 241; //255 is limited by unity 
     [Range(0,6)]
     public int LOD;// 1 : max of detail; 2: less details, ...
     public float noiseScale;
